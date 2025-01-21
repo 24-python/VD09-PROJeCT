@@ -19,7 +19,7 @@ def registration():
         user = User(username=form.username.data, password=hashed_password)
         db.session.add(user)
         db.commit()
-        flash('Вы успешно зарегистрировались!')
+        flash('Вы успешно зарегистрировались!', category='success')
         return redirect(url_for('login'))
     return render_template('register.html')
 
@@ -34,7 +34,7 @@ def login():
             login_user(user)
             return redirect(url_for('index'))
         else:
-            flash('Неверно введены данные аккаунта')
+            flash('Неверно введены данные аккаунта', category='danger')
     return render_template('index.html')
 
 @app.route('/logout')
