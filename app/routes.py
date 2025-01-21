@@ -10,7 +10,7 @@ def index():
     return render_template('index.html')
 
 @app.route('/register', methods=['GET', 'POST'])
-def registration():
+def register():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = RegistrationForm()
@@ -21,7 +21,7 @@ def registration():
         db.commit()
         flash('Вы успешно зарегистрировались!', category='success')
         return redirect(url_for('login'))
-    return render_template('register.html')
+    return render_template('register.html', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -35,7 +35,7 @@ def login():
             return redirect(url_for('index'))
         else:
             flash('Неверно введены данные аккаунта', category='danger')
-    return render_template('index.html')
+    return render_template('index.html', form=form)
 
 @app.route('/logout')
 def logout():
