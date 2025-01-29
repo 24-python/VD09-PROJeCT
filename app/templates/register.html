@@ -4,7 +4,7 @@
 <h1>Вход</h1>
 
 <form method= "post" action="{{ url_for('register')}} ">
-    {{ form.hidden.tag() }}
+    {{ form.hidden_tag() }}
 
     <div>
         {{ form.username.label}}

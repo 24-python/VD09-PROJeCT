@@ -26,7 +26,7 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('index.html'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
@@ -34,8 +34,8 @@ def login():
             login_user(user)
             return redirect(url_for('index'))
         else:
-            flash('Неверно введены данные аккаунта', category='danger')
-    return render_template('login.html', form=form)
+            flash('Неверно введены данные аккаунта', 'danger')
+    return render_template("login.html", form=form)
 
 @app.route('/logout')
 def logout():
